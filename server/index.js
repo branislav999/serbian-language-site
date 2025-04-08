@@ -7,9 +7,16 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: 'https://learn-serbian.netlify.app/',
-  credentials: true
-}));app.use(express.json());
+  origin: [
+    'https://learn-serbian.netlify.app', 
+    'http://localhost:3001' 
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json());
 
 const lessonRoutes = require('./routes/lessons');
 app.use('/lessons', lessonRoutes);
