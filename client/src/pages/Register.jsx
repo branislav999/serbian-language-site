@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { postData } from '../utils/api';
-import { saveUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -18,7 +19,7 @@ function Register() {
     if (data.error) {
       setError(data.error);
     } else {
-      saveUser(data.user);
+      login(data.user);
       navigate('/user');
     }
   };

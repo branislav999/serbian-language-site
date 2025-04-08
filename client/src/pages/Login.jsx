@@ -4,7 +4,7 @@ import { saveUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [loginCredential, setLoginCredential] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const data = await postData('/users/login', { email, password });
+    const data = await postData('/users/login', { loginCredential, password });
 
     if (data.error) {
       setError(data.error);
@@ -27,11 +27,10 @@ function Login() {
       <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
       <form onSubmit={handleLogin} className="space-y-4">
         <input
-          type="email"
-          placeholder="Email"
+          placeholder="Email or Username"
           className="w-full p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginCredential}
+          onChange={(e) => setLoginCredential(e.target.value)}
           required
         />
         <input

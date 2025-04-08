@@ -34,10 +34,10 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { loginCredential, password } = req.body;
 
   try {
-    const userResult = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    const userResult = await pool.query('SELECT * FROM users WHERE email = $1 OR username = $2', [loginCredential,loginCredential]);
     if (userResult.rows.length === 0) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }

@@ -9,10 +9,10 @@ import QuizDetail from './pages/QuizDetail';
 import User from './pages/User';
 import Culture from './pages/Culture';
 import Layout from './components/Layout';
-import { getUser } from './utils/auth';
+import { useAuth } from './context/AuthContext';
 
 function App() {
-  const user = getUser();
+  const { user } = useAuth();
 
   return (
     <Router>

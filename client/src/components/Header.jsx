@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { getUser, logout } from '../utils/auth';
+import { useAuth } from '../context/AuthContext';
 
 function Header() {
-  const user = getUser();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
