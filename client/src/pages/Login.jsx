@@ -19,7 +19,7 @@ function Login() {
       setError(data.error);
     } else {
       saveUser(data.user);
-      window.location.href = '/user';
+      navigate('/user');
     }
   };
 
