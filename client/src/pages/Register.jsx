@@ -25,38 +25,59 @@ function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-      <form onSubmit={handleRegister} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Username"
-          className="w-full p-2 border rounded"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        <button className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700">
-          Register
-        </button>
-      </form>
+    <div className="wrapper register active-popup">
+      <span className="icon-close" onClick={() => navigate('/')}>×</span>
+      <div className="form-box register">
+        <h2>Register</h2>
+        <form onSubmit={handleRegister}>
+          <div className="input-box">
+            <span className="icon">👤</span>
+            <input
+              type="text"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <label>Username</label>
+          </div>
+
+          <div className="input-box">
+            <span className="icon">📧</span>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label>Email</label>
+          </div>
+
+          <div className="input-box">
+            <span className="icon">🔒</span>
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label>Password</label>
+          </div>
+
+          {error && <p className="error-message">{error}</p>}
+
+          <div className="remember-forgot">
+            <label><input type="checkbox" required /> I agree to the terms & conditions</label>
+          </div>
+
+          <button type="submit" className="btn">Register</button>
+          <div className="login-register">
+            <p>
+              Already have an account?{' '}
+              <a onClick={() => navigate('/login')} className="login-link">Login</a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

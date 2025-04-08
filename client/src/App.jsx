@@ -10,9 +10,21 @@ import User from './pages/User';
 import Culture from './pages/Culture';
 import Layout from './components/Layout';
 import { useAuth } from './context/AuthContext';
+import './styles/styles.css';
+import { useEffect } from 'react';
+import { getUser } from '../src/utils/auth';
+
 
 function App() {
   const { user } = useAuth();
+  // useEffect(() => {
+  //   const user = getUser();
+  //   if (user) {
+  //     document.body.classList.add('logged-in');
+  //   } else {
+  //     document.body.classList.remove('logged-in');
+  //   }
+  // }, []);
 
   return (
     <Router>

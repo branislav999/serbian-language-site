@@ -35,19 +35,18 @@ function Culture() {
       description:
         "Held every August in the small town of Guča, this world-famous brass band festival draws hundreds of thousands of visitors. It’s a celebration of music, dance, and Serbian spirit like no other.",
       image: "/images/guca.jpg",
-    },    
+    },
   ];
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 px-4">
-      <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-800">Serbian Culture</h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="culture-container">
+      <div className="culture-grid">
         {insights.map((item, index) => (
-          <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <img src={item.image} alt={item.title} className="h-48 w-full object-cover" />
-            <div className="p-5">
-              <h2 className="text-xl font-semibold mb-2 text-gray-800">{item.title}</h2>
-              <p className="text-gray-600 text-sm">{item.description}</p>
+          <div key={index} className="culture-card">
+            <img src={item.image} alt={item.title} className="culture-image" />
+            <div className="culture-content">
+              <h2 className="culture-title">{item.title}</h2>
+              <p className="culture-description">{item.description}</p>
             </div>
           </div>
         ))}

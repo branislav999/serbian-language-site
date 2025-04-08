@@ -57,7 +57,6 @@ const loginUser = async (req, res) => {
 };
 
 
-// Get user progress
 const getUserProgress = async (req, res) => {
     const { id } = req.params;
   
@@ -67,7 +66,7 @@ const getUserProgress = async (req, res) => {
       if (result.rows.length === 0) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
+      
       res.json(result.rows[0].progress);
     } catch (err) {
       console.error('Error getting progress:', err);
@@ -75,7 +74,6 @@ const getUserProgress = async (req, res) => {
     }
   };
   
-  // Update user progress
   const updateUserProgress = async (req, res) => {
     const { id } = req.params;
     const { progress } = req.body;

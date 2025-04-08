@@ -7,12 +7,10 @@ function Quizzes() {
   const [progress, setProgress] = useState({});
 
   useEffect(() => {
-    // 1. Get all lessons
     fetch('http://localhost:3000/lessons')
       .then(res => res.json())
       .then(data => setLessons(data));
 
-    // 2. Get user's quiz progress
     const user = getUser();
     if (user) {
       fetch(`http://localhost:3000/users/${user.id}/progress`)
@@ -24,26 +22,26 @@ function Quizzes() {
   const quizScores = progress.quizScores || {};
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Available Quizzes</h1>
-      <div className="grid gap-4">
+    <div class="quizzes-container">
+      <h1 class="quizzes-title">Available Quizzes</h1>
+      <div class="quizzes-grid">
         {lessons.map((lesson) => (
-          <div key={lesson.id} className="bg-white p-4 rounded shadow flex justify-between items-center">
-            <div>
-              <h2 className="text-xl font-semibold">{lesson.title}</h2>
-              <p className="text-sm text-gray-600">Course: {lesson.course}</p>
+          <div key={lesson.id} class="quiz-card">
+            <div class="quiz-info">
+              <h2 class="quiz-title">{lesson.title}</h2>
+              <p class="quiz-course">Course: {lesson.course}</p>
             </div>
-            <div className="text-right">
+            <div class="quiz-actions">
               {quizScores[lesson.id] !== undefined ? (
-                <p className="text-green-600 font-semibold">
-                  Score: {quizScores[lesson.id]} ✓
+                <p class="quiz-score">
+                  Score: {quizScores[lesson.id]} <span class="quiz-checkmark">✓</span>
                 </p>
               ) : (
-                <p className="text-gray-500 italic">Not taken</p>
+                <p class="quiz-not-taken">Not taken</p>
               )}
               <Link
                 to={`/quizzes/${lesson.id}`}
-                className="inline-block mt-2 bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                class="quiz-button"
               >
                 Take Quiz
               </Link>

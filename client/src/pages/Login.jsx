@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { postData } from '../utils/api';
 import { saveUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
+import { IonIcon } from '@ionic/react';
+import { mail, lockClosed, close } from 'ionicons/icons';
 
 function Login() {
   const [loginCredential, setLoginCredential] = useState('');
@@ -11,7 +13,6 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     const data = await postData('/users/login', { loginCredential, password });
 
     if (data.error) {
@@ -23,29 +24,54 @@ function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          placeholder="Email or Username"
-          className="w-full p-2 border rounded"
-          value={loginCredential}
-          onChange={(e) => setLoginCredential(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        <button className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
-          Login
-        </button>
-      </form>
+    <div className="wrapper">
+      <span className="icon-close" onClick={() => navigate('/')}>
+        <IonIcon icon={close} />
+      </span>
+      
+      <div className="form-box login">
+        <h2>Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="input-box">
+            <span className="icon">
+              <IonIcon icon={mail} />
+            </span>
+            <input
+              type="text"
+              value={loginCredential}
+              onChange={(e) => setLoginCredential(e.target.value)}
+              required
+            />
+            <label>Email or Username</label>
+          </div>
+          
+          <div className="input-box">
+            <span className="icon">
+              <IonIcon icon={lockClosed} />
+            </span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <label>Password</label>
+          </div>
+          
+          {error && <p className="error-text">{error}</p>}
+          
+          <div className="remember-forgot">
+            <label><input type="checkbox" />Remember me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" className="btn">Login</button>
+          
+          <div className="login-register">
+            <p>Don't have an account? <a href="#" onClick={() => navigate('/register')}>Sign Up</a></p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

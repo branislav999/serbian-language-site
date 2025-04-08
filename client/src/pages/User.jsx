@@ -18,18 +18,19 @@ function User() {
       .then(data => setLessons(data));
   }, [user]);
 
-  if (!progress || !lessons.length) return <p className="text-center mt-10">Loading dashboard...</p>;
+  if (!progress || !lessons.length)
+    return <p className="dashboard-loading">Loading dashboard...</p>;
 
   const completed = progress.completedLessons || [];
   const scores = progress.quizScores || {};
   const totalLessons = lessons.length;
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 px-4">
-      <h1 className="text-3xl font-bold mb-4">Welcome, {user.username} 👋</h1>
+    <div className="dashboard-container">
+      <h1 className="dashboard-heading">Welcome, {user.username}</h1>
 
-      <div className="bg-white p-4 rounded shadow mb-6">
-        <h2 className="text-xl font-semibold mb-2">Progress Overview</h2>
+      <div className="dashboard-card">
+        <h2 className="dashboard-subheading">Progress Overview</h2>
         <p>
           Completed Lessons: <strong>{completed.length} / {totalLessons}</strong>
         </p>
@@ -38,18 +39,18 @@ function User() {
         </p>
       </div>
 
-      <div className="bg-white p-4 rounded shadow">
-        <h2 className="text-xl font-semibold mb-4">Quiz Scores</h2>
+      <div className="dashboard-card">
+        <h2 className="dashboard-subheading">Quiz Scores</h2>
         {Object.keys(scores).length === 0 ? (
-          <p className="text-gray-600">No quizzes taken yet.</p>
+          <p className="dashboard-muted">No quizzes taken yet.</p>
         ) : (
-          <ul className="space-y-2">
+          <ul className="dashboard-score-list">
             {Object.entries(scores).map(([lessonId, score]) => {
               const lesson = lessons.find((l) => l.id === parseInt(lessonId));
               return (
-                <li key={lessonId} className="flex justify-between border-b pb-2">
+                <li key={lessonId} className="dashboard-score-item">
                   <span>{lesson?.title || `Lesson ${lessonId}`}</span>
-                  <span className="text-green-600 font-semibold">{score}</span>
+                  <span className="score-value">{score}</span>
                 </li>
               );
             })}

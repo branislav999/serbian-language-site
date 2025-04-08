@@ -8,5 +8,7 @@ export function saveUser(user) {
   
   export function logout() {
     localStorage.removeItem('user');
+    document.body.classList.remove('logged-in');
+
   }
   
