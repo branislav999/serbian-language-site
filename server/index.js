@@ -6,14 +6,14 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000; 
 
-app.use(cors({
-  origin: [
-    'https://learn-serbian.netlify.app', 
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// app.use(cors({
+//   origin: [
+//     'https://learn-serbian.netlify.app', 
+//   ],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
 
 app.use(express.json());
 
