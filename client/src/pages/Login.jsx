@@ -13,13 +13,18 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log('Login submitted');
     const data = await postData('/users/login', { loginCredential, password });
-
+    console.log('Login response:', data);
+  
     if (data.error) {
       setError(data.error);
     } else {
+      console.log('Login successful, saving user');
       saveUser(data.user);
+      console.log('User saved, navigating to /user');
       navigate('/user');
+      console.log('Navigation called');
     }
   };
 
