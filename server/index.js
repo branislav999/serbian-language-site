@@ -6,8 +6,10 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: 'https://learn-serbian.netlify.app/',
+  credentials: true
+}));app.use(express.json());
 
 const lessonRoutes = require('./routes/lessons');
 app.use('/lessons', lessonRoutes);
