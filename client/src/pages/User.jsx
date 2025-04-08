@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUser } from '../utils/auth';
 
 function User() {
-  const [user, setUser] = useState(null);
+  const { user } = useAuth();
   const [progress, setProgress] = useState(null);
   const [lessons, setLessons] = useState([]);
 
