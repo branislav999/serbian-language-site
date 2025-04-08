@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react';
 import { getUser } from '../utils/auth';
 
 function User() {
-  const user = getUser();
+  const [user, setUser] = useState(null);
   const [progress, setProgress] = useState(null);
   const [lessons, setLessons] = useState([]);
 
   useEffect(() => {
+    const storedUser = getUser();
+    setUser(storedUser);
+  }, []);
+
+  useEffect(() => {
     if (!user) return;
 
-    fetch(`http://localhost:3000/users/${user.id}/progress`)
+    fetch(`https://serbian-language-site.onrender.com/users/${user.id}/progress`)
       .then(res => res.json())
       .then(data => setProgress(data));
 
-    fetch('http://localhost:3000/lessons')
+    fetch('https://serbian-language-site.onrender.com/lessons')
       .then(res => res.json())
       .then(data => setLessons(data));
   }, [user]);

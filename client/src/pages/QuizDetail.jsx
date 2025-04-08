@@ -10,7 +10,7 @@ function QuizDetail() {
   const [score, setScore] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/quizzes/lesson/${id}`)
+    fetch(`https://serbian-language-site.onrender.com/quizzes/lesson/${id}`)
       .then(res => res.json())
       .then(data => setQuestions(data))
       .catch(err => console.error('Error fetching quiz:', err));
@@ -21,7 +21,7 @@ function QuizDetail() {
   };
 
   const handleSubmit = async () => {
-    const response = await fetch('http://localhost:3000/quizzes/submit', {
+    const response = await fetch('https://serbian-language-site.onrender.com/quizzes/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ lessonId: parseInt(id), answers }),
@@ -33,7 +33,7 @@ function QuizDetail() {
 
     const user = getUser();
     if (user) {
-      const progressRes = await fetch(`http://localhost:3000/users/${user.id}/progress`);
+      const progressRes = await fetch(`https://serbian-language-site.onrender.com/users/${user.id}/progress`);
       const progressData = await progressRes.json();
 
       const currentCompleted = progressData.completedLessons || [];
@@ -50,7 +50,7 @@ function QuizDetail() {
       };
 
 
-      await fetch(`http://localhost:3000/users/${user.id}/progress`, {
+      await fetch(`https://serbian-language-site.onrender.com/users/${user.id}/progress`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ progress: updatedProgress }),

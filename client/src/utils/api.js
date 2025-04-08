@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://serbian-language-site.onrender.com';
 
 export async function postData(endpoint, data) {
   const res = await fetch(`${API_URL}${endpoint}`, {

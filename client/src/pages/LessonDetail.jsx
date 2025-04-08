@@ -7,7 +7,7 @@ function LessonDetail() {
   const [lesson, setLesson] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/lessons/${id}`)
+    fetch(`https://serbian-language-site.onrender.com/lessons/${id}`)
       .then(res => res.json())
       .then(data => setLesson(data))
       .catch(err => console.error('Error fetching lesson:', err));

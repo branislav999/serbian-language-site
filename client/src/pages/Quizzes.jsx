@@ -7,13 +7,13 @@ function Quizzes() {
   const [progress, setProgress] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:3000/lessons')
+    fetch('https://serbian-language-site.onrender.com/lessons')
       .then(res => res.json())
       .then(data => setLessons(data));
 
     const user = getUser();
     if (user) {
-      fetch(`http://localhost:3000/users/${user.id}/progress`)
+      fetch(`https://serbian-language-site.onrender.com/users/${user.id}/progress`)
         .then(res => res.json())
         .then(data => setProgress(data));
     }
