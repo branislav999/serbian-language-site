@@ -11,13 +11,14 @@ import Culture from './pages/Culture';
 import Layout from './components/Layout';
 import { useAuth } from './context/AuthContext';
 import './styles/styles.css';
-import { useEffect } from 'react';
-import { getUser } from '../src/utils/auth';
 
 
 function App() {
   const { user } = useAuth();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3a9af3e48a2fbda3a1fef56183e9a436b1a35a49
 
   return (
     <Router>
