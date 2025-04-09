@@ -14,7 +14,6 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     console.log("Login submitted");
     
     try {
@@ -33,20 +32,6 @@ function Login() {
     } catch (err) {
       console.error("Login error:", err);
       setError("An error occurred during login");
-=======
-    console.log('Login submitted');
-    const data = await postData('/users/login', { loginCredential, password });
-    console.log('Login response:', data);
-  
-    if (data.error) {
-      setError(data.error);
-    } else {
-      console.log('Login successful, saving user');
-      saveUser(data.user);
-      console.log('User saved, navigating to /user');
-      navigate('/user');
-      console.log('Navigation called');
->>>>>>> 3a9af3e48a2fbda3a1fef56183e9a436b1a35a49
     }
   };
 
