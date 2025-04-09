@@ -15,10 +15,6 @@ import './styles/styles.css';
 
 function App() {
   const { user } = useAuth();
-<<<<<<< HEAD
-
-=======
->>>>>>> 3a9af3e48a2fbda3a1fef56183e9a436b1a35a49
 
   return (
     <Router>

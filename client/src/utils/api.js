@@ -1,4 +1,4 @@
-const API_URL = 'https://serbian-language-site.onrender.com';
+export const API_URL = 'https://serbian-language-site.onrender.com';
 
 export async function postData(endpoint, data) {
   const res = await fetch(`${API_URL}${endpoint}`, {
@@ -9,3 +9,4 @@ export async function postData(endpoint, data) {
 
   return res.json();
 }
+
