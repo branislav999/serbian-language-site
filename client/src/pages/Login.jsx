@@ -1,25 +1,37 @@
 import { useState } from 'react';
 import { postData } from '../utils/api';
-import { saveUser } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import { IonIcon } from '@ionic/react';
 import { mail, lockClosed, close } from 'ionicons/icons';
+import { useAuth } from '../context/AuthContext'; // This is all you need
 
 function Login() {
   const [loginCredential, setLoginCredential] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // This gives you access to the login function
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const data = await postData('/users/login', { loginCredential, password });
-
-    if (data.error) {
-      setError(data.error);
-    } else {
-      saveUser(data.user);
-      window.location.href = '/user';
+    console.log("Login submitted");
+    
+    try {
+      const data = await postData('/users/login', { loginCredential, password });
+      console.log("Login response:", data);
+      
+      if (data.error) {
+        setError(data.error);
+      } else {
+        console.log("Login successful, saving user");
+        login(data.user); // This updates both localStorage and the context state
+        
+        console.log("User saved, navigating to /user");
+        navigate('/user'); 
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An error occurred during login");
     }
   };
 
