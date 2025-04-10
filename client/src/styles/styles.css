@@ -237,7 +237,8 @@ html, body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('/images/grad.jpeg') no-repeat;
+    /* background: url('/images/grad.jpeg') no-repeat; */
+    background: #fef1f0 !important;
     background-size: cover;
     background-position: center;
     margin: 0;
